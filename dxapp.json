@@ -1,0 +1,56 @@
+{
+  "name": "cnvseq",
+  "title": "CNVseq",
+  "summary": "Call copy number variants (CNVs) from whole genome sequencing alignments",
+  "tags": [
+    "Structural Variation",
+    "VariantCalling"
+  ],
+  "dxapi": "1.0.0",
+  "inputSpec": [
+    {
+      "name": "input_bam",
+      "label": "Input BAM (*.bam)",
+      "help": "BAM file generated from aligning WGS reads to the hg19 reference",
+      "class": "file",
+      "patterns": ["*.bam"],
+      "optional": false
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "cnvseq",
+      "label": "CNVseq output files",
+      "help": "CNVseq output files",
+      "class": "array:file"
+    }
+  ],
+  "runSpec": {
+    "systemRequirementsByRegion": {
+      "aws:us-east-1": {
+        "main": {
+          "instanceType": "mem1_ssd1_x2"
+        }
+      }
+    },
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x2"
+      }
+    },
+    "file": "src/code.sh",
+    "release": "14.04",
+    "interpreter": "bash",
+    "distribution": "Ubuntu"
+  },
+  "access": {
+    "network": [
+      "*"
+    ]
+  },
+  "details": {
+    "CNVseq author": "David Bronthon; d.t.bronthon@leeds.ac.uk",
+    "CNVseq version release date": "13 Feb 2015",
+    "github release": "v1.0"
+  }
+}
