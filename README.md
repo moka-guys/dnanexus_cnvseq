@@ -15,6 +15,9 @@ This app is designed to be run on a single WGS sample to call CNVs using CNVseq.
 The following inputs are required for this app to run:
 * Alignment file (`*.bam`) from alignment of a human WGS sample to the **hg19** reference genome using BWA
 
+Additionally, an optional window size seed value can be passed to the app for use in genomic window size calculations. The window size is calculated in CNVseq as follows:
+window size = ( seed * reference read count ) / samle read count
+
 ## What does this app output?
 
 CNVs are reported where the log2 sample-reference ratio is outside the defined cut-offs. Here, -0.55 for a copy number loss and +0.24 for a copy number gain. This app produces the following output files:

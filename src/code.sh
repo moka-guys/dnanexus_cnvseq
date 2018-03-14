@@ -23,11 +23,15 @@ mv ${input_bam_path} RUNDIR/Sample_1/bam/
 # Assign the CNVseq.sh "PROG_DIR" constant to the cnvseq directorysed -i "s/PROG_DIR=.*/PROG_DIR=\/home\/dnanexus\/cnvseq/g" ../cnvseq/CNVseq.sh    on the worker
 sed -i "s/PROG_DIR=.*/PROG_DIR=\/home\/dnanexus\/cnvseq/g" cnvseq/CNVseq.sh
 
+# Set CNVseq seed value to calculate window size. Default = 5000
+# window size = ( seed * reference_read_count ) / sample_read_count
+sed -i "s/TEST_WINDOW_SIZE=5000/TEST_WINDOW_SIZE=$window_seed/g" cnvseq/CNVseq.sh
+
 # Run CNVseq on input BAM file
 bash cnvseq/CNVseq.sh -r RUNDIR/
 
-# Create output directory
-outdir=out/cnvseq/cnvseq_out/${input_bam_prefix}; mkdir -p $outdir
+# Create output directory with window seed size as suffix
+outdir=out/cnvseq/Results/cnvseq_out/${input_bam_prefix}_${window_seed}; mkdir -p $outdir
 # Move CNVseq results files for upload
 mv RUNDIR/Sample_1/cnvseq/* $outdir
 

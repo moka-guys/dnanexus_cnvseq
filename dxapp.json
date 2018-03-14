@@ -15,6 +15,13 @@
       "class": "file",
       "patterns": ["*.bam"],
       "optional": false
+    },
+    {
+      "name": "window_seed",
+      "label": "Window Seed",
+      "class": "int",
+      "help": "Genomic window size seed value to use in CNV analysis",
+      "default": 5000
     }
   ],
   "outputSpec": [
